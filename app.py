@@ -116,7 +116,7 @@ def create_app(config=None):
         writer = csv.writer(output)
         writer.writerow(['Date','Description','Category','Type','Amount'])
         for item in records():
-            # Spreadsheet programs can interpret these prefixes as formulas.
+            # Prevent formulas in exported CSV files.
             description = item.description
             if description.lstrip().startswith(('=','+','-','@')):
                 description = "'" + description
